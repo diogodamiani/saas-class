@@ -1,12 +1,8 @@
 def palindrome?(string)
 
 	valid_string = string.scan(/\w/).to_s.downcase
-
-	if valid_string == valid_string.reverse
-		return true
-	end
-
-	return false
+	
+	valid_string == valid_string.reverse
 end
 
 puts palindrome?("A man, a plan, a canal -- Panama")
@@ -15,19 +11,30 @@ puts palindrome?("Abracadabra")
 
 def count_words(string)
 
-	hash = Hash.new
+	# More delarative code
+	#
+	# word_count = Hash.new
+	# words = string.downcase.split
+
+	# words.each { |word|
+	
+	# 	if word_count.has_key?(word)
+	# 		word_count[word] += 1
+	# 	else
+	# 		word_count[word] = 1 
+	# 	end
+	# }
+
+	# return word_count
+
+	word_count = Hash.new(0)
 	words = string.downcase.split
 
-	words.each { |w|
-	
-		if hash.has_key?(w)
-			hash[w] += 1
-		else
-			hash[w] = 1 
-		end
+	words.each { |word|
+		word_count[word] += 1
 	}
 
-	return hash
+	word_count
 end
 
 puts count_words("Doo bee doo bee doo")
