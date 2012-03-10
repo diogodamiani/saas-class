@@ -53,3 +53,27 @@ class Numeric
 puts 5.dollar.in(:euros)
 puts 1.euro.in(:dollars)
 puts 10.rupees.in(:euro)
+
+#B
+String.class_eval do
+  def palindrome?
+    self.gsub!(/\s|\W/,"")
+    return self.downcase.reverse == self.downcase
+  end
+end
+
+#C
+Enumerable.class_eval do
+  def palindrome?
+    return (self.is_a? Array) ? self.reverse == self : self.to_a.palindrome?
+  end
+end
+
+puts "A man, a plan, a canal -- Panama".palindrome? #=>true
+puts "Madam, I'm Adam".palindrome? #=>true
+puts "Abracadabra".palindrome? #=>false
+pvalue = {"hello"=>"world"}
+puts pvalue.palindrome? #=>true
+puts (1..2).palindrome? #=>false
+puts "madamimadam".chars.each.palindrome? #=>true
+puts "what".chars.each.palindrome? #=>false
